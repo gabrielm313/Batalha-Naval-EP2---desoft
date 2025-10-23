@@ -15,9 +15,6 @@ def define_posicoes(i, j, o, t):
 def preenche_frota(frota, nv, i, j, o, t):
     posicoes = define_posicoes(i, j, o, t)
 
-    if nv in frota:
-        frota[nv] = [posicoes]
-    else:
-        frota[nv] = [posicoes]
-
+    if nv not in frota:
+        frota[nv] = posicoes
     return frota
