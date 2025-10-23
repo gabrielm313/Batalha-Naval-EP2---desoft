@@ -1,1 +1,2 @@
-print("gabriel")
+# Exercício 1:
+
