@@ -14,12 +14,11 @@ def define_posicoes(i , j , o , t):
 # Exercício 2:
 
 def preenche_frota(frota, nv , i, j, o, t):
-    posicoes = define_posicoes(i, j, o, t) 
+    posicoes = define_posicoes(i, j, o, t)
 
-    dicio = {}
+    if nv in frota:
+        frota[nv].append(posicoes)
+    else:
+        frota[nv] = [posicoes]
 
-    for navio in frota:
-        if navio == nv:
-            dicio[navio] = posicoes
-
-    return dicio
+    return frota
