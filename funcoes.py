@@ -65,37 +65,20 @@ def afundados(dicio , tab):
 # Exercício 6:
 
 def posicao_valida(dicio , i , j , o , t):
-    po = define_posicoes(i, j, o, t)
+    lista = []
+    if o == "vertical":
+        for k in range(t):
+            lista.append([i + k, j])    
+    elif o == "horizontal":
+        for k in range(t):
+            lista.append([i, j + k])    
       
     for listas in dicio.values():
         for p in listas:
-            for a,b in p:
-                if [a,b] in po:
+            for i,j in p:
+                if (i,j) in lista:
                     return False
     return True
 
-frota = {
-    "navio-tanque":[
-      [[6,1],[6,2],[6,3]],
-      [[4,7],[5,7],[6,7]]
-    ],
-    "contratorpedeiro":[
-      [[1,1],[2,1]],
-      [[2,3],[3,3]],
-      [[9,1],[9,2]]
-    ],
-    "submarino": [
-      [[0,3]],
-      [[4,5]],
-      [[8,9]],
-      [[8,4]]
-    ],
-}
-linha = 6
-coluna = 2
-orientacao = 'horizontal'
-tamanho = 4
-resultado = posicao_valida(frota, linha, coluna, orientacao, tamanho)
-print(resultado)
 
     
