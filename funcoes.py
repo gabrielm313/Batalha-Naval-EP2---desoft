@@ -75,8 +75,8 @@ def posicao_valida(dicio , i , j , o , t):
       
     for listas in dicio.values():
         for p in listas:
-            for i,j in p:
-                if (i,j) in lista:
+            for [linha, coluna] in p:
+                if [linha, coluna] in lista:
                     return False
     return True
 
