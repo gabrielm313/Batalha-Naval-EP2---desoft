@@ -1,4 +1,3 @@
-#Exercício 3
 def faz_jogada(tab, i, j):
     if tab[i][j] == 1:
         tab[i][j] = 'X'
