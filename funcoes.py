@@ -30,3 +30,22 @@ def faz_jogada(tab, i, j):
     elif tab[i][j] == 0:
         tab[i][j] = '-'
     return tab
+
+# Exercício 4:
+
+def posiciona_frota(dicio):
+    tab = []
+    for i in range(10):
+        linha = []
+        for j in range(10):
+            linha.append(0)
+        tab.append(linha)
+    
+    for lista in dicio.values():
+        for l in lista:
+            for i,j in l:
+                tab[i][j] = 1
+    return tab
+
+
+    
