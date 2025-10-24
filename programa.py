@@ -13,6 +13,7 @@ for elem in frota.keys():
         linha = int(input('Linha: '))
         coluna = int(input('Coluna: '))
         orientação = int(input('[1] Vertical [2] Horizontal >'))
+        
     elif elem == 'navio-tanque':
         for e in range(2):
             print(f'Insira as informações referentes ao navio {elem} que possui tamanho 3')
