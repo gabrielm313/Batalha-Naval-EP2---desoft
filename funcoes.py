@@ -20,3 +20,14 @@ def preenche_frota(frota, nv, i, j, o, t):
     else:
         frota[nv] = [posicoes]
     return frota
+
+def faz_jogada(tab, i, j):
+    for linha in range(len(tab)):
+        if linha == i:
+            for coluna in range(len(tab[linha])):
+                if coluna == j:
+                    if tab[linha][coluna] == 1:
+                        tab[linha][coluna] = "X"
+                    else:
+                        tab[linha][coluna] = "-"
+    return tab
