@@ -47,5 +47,21 @@ def posiciona_frota(dicio):
                 tab[i][j] = 1
     return tab
 
+# Exercício 5:
+
+def afundados(dicio , tab):
+    cont = 0 
+    for lista in dicio.values():
+        for l in lista:
+            t = len(l)
+            c = 0
+            for i,j in l:
+                if tab[i][j] == 'X':
+                    c += 1
+            if c == t:
+                cont += 1
+    return cont
+
+
 
     
