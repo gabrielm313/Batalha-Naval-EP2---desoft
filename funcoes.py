@@ -74,7 +74,7 @@ def posicao_valida(dicio , i , j , o , t):
             lista.append([i, j + k])
 
     for i, j in lista:
-        if i<0 or j<0 or i>t or j>t:
+        if i<0 or j<0 or i>9 or j>9:
             return False    
       
     for listas in dicio.values():
