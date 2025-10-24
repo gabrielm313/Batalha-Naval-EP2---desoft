@@ -71,7 +71,11 @@ def posicao_valida(dicio , i , j , o , t):
             lista.append([i + k, j])    
     elif o == "horizontal":
         for k in range(t):
-            lista.append([i, j + k])    
+            lista.append([i, j + k])
+
+    for i, j in lista:
+        if i<0 or j<0 or i>t or j>t:
+            return False    
       
     for listas in dicio.values():
         for p in listas:
