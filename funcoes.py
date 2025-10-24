@@ -22,12 +22,8 @@ def preenche_frota(frota, nv, i, j, o, t):
     return frota
 
 def faz_jogada(tab, i, j):
-    for linha in range(len(tab)):
-        if linha == i:
-            for coluna in range(len(tab[linha])):
-                if coluna == j:
-                    if tab[linha][coluna] == 1:
-                        tab[linha][coluna] = "X"
-                    else:
-                        tab[linha][coluna] = "-"
+    if tab[i][j] == 1:
+        tab[i][j] = 'X'
+    else:
+        tab[i][j] = '-'
     return tab
