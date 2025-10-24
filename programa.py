@@ -20,8 +20,6 @@ for elem in frota.keys():
             linha = int(input('Linha: '))
             coluna = int(input('Coluna: '))
             orientação = int(input('[1] Vertical [2] Horizontal >'))
-            if posicao_valida(frota, linha, coluna, orientação, 4):
-                print('sla')
 
     elif elem == 'contratorpedeiro':
         for e in range(3):
