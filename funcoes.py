@@ -24,6 +24,6 @@ def preenche_frota(frota, nv, i, j, o, t):
 def faz_jogada(tab, i, j):
     if tab[i][j] == 1:
         tab[i][j] = 'X'
-    else:
+    elif tab[i][j] == 0:
         tab[i][j] = '-'
     return tab
