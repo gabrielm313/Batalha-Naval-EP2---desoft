@@ -27,8 +27,8 @@ for nome in frota.keys():
         f = False
         while not f:
             print(f"Insira as informações referentes ao navio {nome} que possui tamanho {t}")
-            i = int(input("linha:"))
-            j = int(input("coluna:"))
+            i = int(input("Linha:"))
+            j = int(input("Coluna:"))
 
             if nome != "submarino":
                 o = int(input("orientação:"))
@@ -99,7 +99,7 @@ while jogando:
         continue
 
     if opo[i][j] == 'X' or opo[i][j] == '-':
-        print("Posição já informadaanteriormente!")
+        print("Posição já informada anteriormente!")
         continue
 
     opo = faz_jogada(opo , i , j)
@@ -111,5 +111,5 @@ while jogando:
         print("Você errou")
 
     if na == tn:
-        print("Parabéns! Você afundou todos os vavios do oponente!")
+        print("Parabéns! Você afundou todos os navios do oponente!")
         jogando = False
