@@ -1,5 +1,12 @@
 from funcoes import *
 
+tamanho = {
+    "porta-aviões":4,
+    "navio-tanque":3,
+    "contratorpedeiro":2,
+    "submarino": 1,
+}     
+
 frota = {
     "porta-aviões":[],
     "navio-tanque":[],
@@ -7,29 +14,20 @@ frota = {
     "submarino": [],
 }     
 
-for elem in frota.keys():
-    if elem == 'porta-aviões':
-        print(f'Insira as informações referentes ao navio {elem} que possui tamanho 4')
-        linha = int(input('Linha: '))
-        coluna = int(input('Coluna: '))
-        orientação = int(input('[1] Vertical [2] Horizontal >'))
-        
-    elif elem == 'navio-tanque':
-        for e in range(2):
-            print(f'Insira as informações referentes ao navio {elem} que possui tamanho 3')
-            linha = int(input('Linha: '))
-            coluna = int(input('Coluna: '))
-            orientação = int(input('[1] Vertical [2] Horizontal >'))
-
-    elif elem == 'contratorpedeiro':
-        for e in range(3):
-            print(f'Insira as informações referentes ao navio {elem} que possui tamanho 2')
-            linha = int(input('Linha: '))
-            coluna = int(input('Coluna: '))
-            orientação = int(input('[1] Vertical [2] Horizontal >'))
-    elif elem == 'submarino':
-        for e in range(4):
-            print(f'Insira as informações referentes ao navio {elem} que possui tamanho 1')
-            linha = int(input('Linha: '))
-            coluna = int(input('Coluna: '))
-        orientação = 1
+for nome , t in tamanho.items():
+    while True:
+        print(f'Insira as informações referentes ao navio {nome} que possui tamanho {t}')
+        l = int(input('Linha: '))
+        c = int(input('Coluna: '))
+        if nome != 'submarino':
+            o = int(input('[1] Vertical [2] Horizontal >'))
+            if o == 1:
+                o = 'vertical'
+            elif o == 2:
+                o = 'horizontal'
+        if not posicao_valida(frota , l , c , o , t):
+            print('Esta posição não está válida')
+        else:
+            define_posicoes( l , c , o , t)
+            frota = preenche_frota(frota , nome , l , c , o , t)
+print(frota)
