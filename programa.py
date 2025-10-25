@@ -24,11 +24,11 @@ for nome in frota.keys():
         f = False
         while not f:
             print(f"Insira as informações referentes ao navio {nome} que possui tamanho {t}")
-            l = int(input("coloque a linha:"))
-            c = int(input("coloque a coluna:"))
+            l = int(input("linha:"))
+            c = int(input(" coluna:"))
 
             if nome != "submarino":
-                o = int(input("coloque a orientação:"))
+                o = int(input(" orientação:"))
                 if o == 1:
                     o = 'vertical'
                 elif o == 2:
