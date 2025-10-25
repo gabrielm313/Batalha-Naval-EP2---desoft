@@ -1,4 +1,7 @@
 from funcoes import *
+
+# Exercício 7:
+
 frota = {
     "porta-aviões": [],
     "navio-tanque": [],
@@ -41,6 +44,8 @@ for nome in frota.keys():
                 frota = preenche_frota(frota, nome, i, j, o, t)
                 f = True
 
+# Exercício 8:
+
 frota_opo = {
     'porta-aviões': [
         [[9, 1], [9, 2], [9, 3], [9, 4]]
@@ -64,6 +69,17 @@ frota_opo = {
 
 opo = posiciona_frota(frota_opo)
 jog = posicao_valida(frota)
+
+def monta_tabuleiros(tabuleiro_jogador, tabuleiro_oponente):
+    texto = ''
+    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
+    texto += '_______________________________      _______________________________\n'
+
+    for linha in range(len(tabuleiro_jogador)):
+        jogador_info = '  '.join([str(item) for item in tabuleiro_jogador[linha]])
+        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in tabuleiro_oponente[linha]])
+        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
+    return texto
 
 jogando = True
 tn = 10
