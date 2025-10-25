@@ -24,8 +24,8 @@ for nome in frota.keys():
         f = False
         while not f:
             print(f"Insira as informações referentes ao navio {nome} que possui tamanho {t}")
-            l = int(input("linha:"))
-            c = int(input(" coluna:"))
+            i = int(input("linha:"))
+            j = int(input(" coluna:"))
 
             if nome != "submarino":
                 o = int(input(" orientação:"))
@@ -34,11 +34,11 @@ for nome in frota.keys():
                 elif o == 2:
                     o = 'horizontal'
 
-            if posicao_valida(frota, l, c, o, t) == False:
+            if posicao_valida(frota, i, j, o, t) == False:
                 print("Esta posição não está válida!")
             else:
-                define_posicoes(l, c, o, t)
-                frota = preenche_frota(frota, nome, l, c, o, t)
+                define_posicoes(i, j, o, t)
+                frota = preenche_frota(frota, nome, i, j, o, t)
                 f = True
 
 print(frota)
