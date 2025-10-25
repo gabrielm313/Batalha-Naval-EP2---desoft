@@ -1,52 +1,45 @@
-from funcoes import *
+#Exercício 7 do PrairieLearn
+from funcoes import define_posicoes, posicao_valida, preenche_frota, posiciona_frota, monta_tabuleiros, faz_jogada, afundados
+import random
 
-# Exercício 7:
+random.seed(2)
 
 frota = {
-    "porta-aviões": [],
-    "navio-tanque": [],
-    "contratorpedeiro": [],
+    "porta-aviões":[],
+    "navio-tanque":[],
+    "contratorpedeiro":[],
     "submarino": [],
+} 
+
+navios = {
+    "porta-aviões":[4],
+    "navio-tanque":[3, 3],
+    "contratorpedeiro":[2, 2, 2],
+    "submarino": [1, 1, 1, 1],
 }
 
-for nome in frota.keys():
-    if nome == "porta-aviões":
-        t = 4
-        q = 1
-    elif nome == "navio-tanque":
-        t = 3
-        q = 2
-    elif nome == "contratorpedeiro":
-        t = 2
-        q = 3
-    elif nome == "submarino":
-        t = 1
-        q = 4
+for tipo in navios:
+        for valor in navios[tipo]:
+            tamanho = valor
+            while True:
+                print(f"Insira as informações referentes ao navio {tipo} que possui tamanho {tamanho}")
+                l = int(input("Linha: "))
+                c = int(input("Coluna: "))
+                if tipo != 'submarino':
+                    orientacao = int(input("[1] Vertical [2] Horizontal >"))
+                    if orientacao == 1:
+                        orientacao = 'vertical'
+                    elif orientacao == 2:
+                        orientacao = 'horizontal'
+                if posicao_valida(frota, l, c, orientacao, tamanho):
+                    define_posicoes(l, c, orientacao, tamanho)
+                    preenche_frota(frota, tipo, l, c, orientacao, tamanho)
+                    break
+                else: 
+                    print("Esta posição não está válida!")
 
-    for v in range(q):
-        f = False
-        while not f:
-            print(f"Insira as informações referentes ao navio {nome} que possui tamanho {t}")
-            i = int(input("Linha:"))
-            j = int(input("Coluna:"))
-
-            if nome != "submarino":
-                o = int(input("Orientação:"))
-                if o == 1:
-                    o = 'vertical'
-                elif o == 2:
-                    o = 'horizontal'
-
-            if posicao_valida(frota, i, j, o, t) == False:
-                print("Esta posição não está válida!")
-            else:
-                define_posicoes(i, j, o, t)
-                frota = preenche_frota(frota, nome, i, j, o, t)
-                f = True
-
-# Exercício 8:
-
-frota_opo = {
+#Exercício 8 do PrairieLearn
+frota_oponente = {
     'porta-aviões': [
         [[9, 1], [9, 2], [9, 3], [9, 4]]
     ],
@@ -66,50 +59,38 @@ frota_opo = {
         [[7, 6]]
     ]
 }
-
-opo = posiciona_frota(frota_opo)
-jog = posicao_valida(frota , i , j , o , t)
-
-def monta_tabuleiros(jog, opo):
-    texto = ''
-    texto += '   0  1  2  3  4  5  6  7  8  9         0  1  2  3  4  5  6  7  8  9\n'
-    texto += '_______________________________      _______________________________\n'
-
-    for linha in range(len(jog)):
-        jogador_info = '  '.join([str(item) for item in jog[linha]])
-        oponente_info = '  '.join([info if str(info) in 'X-' else '0' for info in opo[linha]])
-        texto += f'{linha}| {jogador_info}|     {linha}| {oponente_info}|\n'
-    return texto
-
-jogando = True
-tn = 10
-na = 0
-
-while jogando:
-    print(monta_tabuleiros(jog, opo))
-
-    i = int(input("Jogador, qual linha deseja atacar? "))
-    if i < 0 or i > 9:
-        print("Linha inválida!")
+opo = posiciona_frota(frota_oponente)
+jog = posiciona_frota(frota)
+print(monta_tabuleiros(jog, opo))
+while True:
+    l = int(input('Jogador, qual linha deseja atacar? '))
+    while l < 0 or l > 9:
+        print('Linha inválida!')
+        l = int(input('Jogador, qual linha deseja atacar? '))
+    c = int(input('Jogador, qual coluna deseja atacar? '))
+    while c < 0 or c > 9:
+        print('Coluna inválida!')
+        c = int(input('Jogador, qual coluna deseja atacar? '))
+    if opo[l][c] == '-' or opo[l][c] == 'X':
+        print(f'A posição linha {l} e coluna {c} já foi informada anteriormente!')
         continue
-
-    j = int(input("Jogador, qual coluna deseja atacar? "))
-    if j < 0 or j > 9:
-        print("Coluna inválida!")
-        continue
-
-    if opo[i][j] == 'X' or opo[i][j] == '-':
-        print("Posição já informada anteriormente!")
-        continue
-
-    opo = faz_jogada(opo , i , j)
-    na = afundados(frota_opo , opo)
-
-    if opo[i][j] == 'X':
-        print("Você acertou um navio!")
     else:
-        print("Você errou")
+        opo = faz_jogada(opo, l, c)
+    if afundados(frota_oponente, opo) == 10:
+        print('Parabéns! Você derrubou todos os navios do seu oponente!')
+        break
+    else:
+        while True: 
+            lo = random.randint(0, 9)
+            co = random.randint(0, 9)
+            if jog[lo][co] == '-' or jog[lo][co] == 'X':
+                continue
+            jog = faz_jogada(jog, lo, co)
+            print(f"Seu oponente está atacando na linha {lo} e coluna {co}")
+            break
 
-    if na == tn:
-        print("Parabéns! Você afundou todos os navios do oponente!")
-        jogando = False
+    if afundados(frota, jog) == 10:
+        print("O oponente derrubou toda a sua frota")
+        break
+    
+    print(monta_tabuleiros(jog, opo))
