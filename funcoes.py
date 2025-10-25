@@ -16,7 +16,7 @@ def preenche_frota(frota, nv, i, j, o, t):
     posicoes = define_posicoes(i, j, o, t)
 
     if nv in frota:
-        frota[nv] = [posicoes]
+        frota[nv].append(posicoes)
     else:
         frota[nv] = [posicoes]
 
