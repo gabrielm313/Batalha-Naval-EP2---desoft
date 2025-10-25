@@ -21,7 +21,8 @@ for nome in frota.keys():
         q = 4
 
     for i in range(q):
-        while True:
+        f = False
+        while not f:
             print(f'Insira as informações referentes ao navio {nome} que possui tamanho {t}')
             l = int(input('Linha: '))
             c = int(input('Coluna: '))
@@ -36,5 +37,5 @@ for nome in frota.keys():
             else:
                 define_posicoes( l , c , o , t)
                 frota = preenche_frota(frota , nome , l , c , o , t)
-
+                f = True
 print(frota)
