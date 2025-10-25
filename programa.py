@@ -1,23 +1,27 @@
 from funcoes import *
 
-tamanho = {
-    "porta-aviões":4,
-    "navio-tanque":3,
-    "contratorpedeiro":2,
-    "submarino": 1,
-}     
-
 frota = {
     "porta-aviões":[],
     "navio-tanque":[],
     "contratorpedeiro":[],
     "submarino": [],
 }     
+for nome in frota.keys():
+    if nome == "porta-aviões":
+        t = 4
+        q = 1
+    elif nome == "navio-tanque":
+        t = 3
+        q = 2
+    elif nome == "contratorpedeiro":
+        t = 2
+        q = 3
+    elif nome == "submarino":
+        t = 1
+        q = 4
 
-for nome , t in tamanho.items():
-    for i in range(t):
-        f = False
-        while not f:
+    for i in range(q):
+        while True:
             print(f'Insira as informações referentes ao navio {nome} que possui tamanho {t}')
             l = int(input('Linha: '))
             c = int(input('Coluna: '))
@@ -32,5 +36,5 @@ for nome , t in tamanho.items():
             else:
                 define_posicoes( l , c , o , t)
                 frota = preenche_frota(frota , nome , l , c , o , t)
-                f = True
+
 print(frota)
