@@ -1,5 +1,5 @@
 #Exercício 7 do PrairieLearn
-from funcoes import define_posicoes, posicao_valida, preenche_frota, posiciona_frota, monta_tabuleiros, faz_jogada, afundados
+from funcoes import *
 import random
 
 random.seed(2)
