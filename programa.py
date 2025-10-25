@@ -29,10 +29,12 @@ for tipo in navios:
                     orientacao = int(input("[1] Vertical [2] Horizontal >"))
                     if orientacao == 1:
                         orientacao = 'vertical'
-                    elif orientacao == 2:
+                    else:
                         orientacao = 'horizontal'
+                else:
+                    orientacao = 'vertical'
                 if posicao_valida(frota, l, c, orientacao, tamanho):
-                    define_posicoes(l, c, orientacao, tamanho)
+                    
                     preenche_frota(frota, tipo, l, c, orientacao, tamanho)
                     break
                 else: 

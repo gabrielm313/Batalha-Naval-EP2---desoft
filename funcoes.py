@@ -66,6 +66,7 @@ def afundados(dicio , tab):
 
 def posicao_valida(dicio , i , j , o , t):
     lista = []
+    
     if o == "vertical":
         for k in range(t):
             lista.append([i + k, j])    
@@ -76,12 +77,13 @@ def posicao_valida(dicio , i , j , o , t):
     for i, j in lista:
         if i<0 or j<0 or i>9 or j>9:
             return False    
-      
+    
     for listas in dicio.values():
         for p in listas:
             for [linha, coluna] in p:
                 if [linha, coluna] in lista:
                     return False
+    
     return True
 
 def monta_tabuleiros(jog, opo):
